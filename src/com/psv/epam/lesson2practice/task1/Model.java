@@ -11,7 +11,7 @@ public class Model {
         this.longValue = longValue;
     }
 
-    public boolean checkNumberInRange(long longValue) {
+    public boolean checkLongInRange(long longValue) {
         boolean numberInRange = false;
         if (longValue <= Long.MAX_VALUE && longValue >= 1) {
             setLongValue(longValue);
@@ -20,106 +20,66 @@ public class Model {
         return numberInRange;
     }
 
-    public void convertToBin () {
-        StringBuilder strInBinSys = new StringBuilder();
-        long number = longValue;
-        long rezultOfDivBy2, restOfDivBy2;
-                do {
-            rezultOfDivBy2 = number / 2;
-            if (rezultOfDivBy2 == 0) {
-                strInBinSys.append(number);
-            break;
-            }
-            restOfDivBy2 = number % 2;
-            strInBinSys.append(restOfDivBy2);
+    public StringBuilder convertToBinOctHex() {
+        StringBuilder strNumInDifSys = new StringBuilder();
+        long number, rezultOfDivByN, restOfDivByN;
 
-            if (rezultOfDivBy2 >= 2) {
-                restOfDivBy2 = rezultOfDivBy2 % 2;
-                strInBinSys.append(restOfDivBy2);
-                rezultOfDivBy2 = rezultOfDivBy2 / 2;
-                number = rezultOfDivBy2;
+        for (int numSys = 16; numSys >= 0; numSys -= 8) {
+            if (numSys == 0) numSys = 2;
+            number = longValue;
+            do {
+                rezultOfDivByN = number / numSys;
+                if (rezultOfDivByN == 0) {
+                    checkValueLess16(number, strNumInDifSys);
+                    break;
+                }
+                restOfDivByN = number % numSys;
+                checkValueLess16(restOfDivByN, strNumInDifSys);
+
+                if (rezultOfDivByN >= numSys) {
+                    restOfDivByN = rezultOfDivByN % numSys;
+                    checkValueLess16(restOfDivByN, strNumInDifSys);
+                    rezultOfDivByN = rezultOfDivByN / numSys;
+                    number = rezultOfDivByN;
+                }
+                if (rezultOfDivByN < numSys)
+                    checkValueLess16(rezultOfDivByN, strNumInDifSys);
+
             }
-            if (rezultOfDivBy2 < 2)
-                strInBinSys.append(rezultOfDivBy2);
+            while (rezultOfDivByN >= numSys);
+
+            if (numSys == 2) strNumInDifSys.append("b0");
+            else if (numSys == 8) strNumInDifSys.append("0 |");
+            else if (numSys == 16) strNumInDifSys.append("x0 |");
 
         }
-        while (rezultOfDivBy2 >= 2);
-        System.out.println(strInBinSys.append("b0").reverse());
+
+        return strNumInDifSys.reverse();
     }
 
-    public void convertToOct (){
-        StringBuilder strInOctSys = new StringBuilder();
-        long number = longValue;
-        long rezultOfDivBy8, restOfDivBy8;
-        do {
-            rezultOfDivBy8 = number / 8;
-            if (rezultOfDivBy8 == 0) {
-                strInOctSys.append(number);
-                break;
-            }
-            restOfDivBy8 = number % 8;
-            strInOctSys.append(restOfDivBy8);
-
-            if (rezultOfDivBy8 >= 8) {
-                restOfDivBy8 = rezultOfDivBy8 % 8;
-                strInOctSys.append(restOfDivBy8);
-                rezultOfDivBy8 = rezultOfDivBy8 / 8;
-                number = rezultOfDivBy8;
-            }
-            if (rezultOfDivBy8 < 8)
-                strInOctSys.append(rezultOfDivBy8);
-
-        }
-        while (rezultOfDivBy8 >= 8);
-        System.out.println(strInOctSys.append("0").reverse());
-    }
-    public void convertToHex () {
-        StringBuilder strInHexSys = new StringBuilder();
-        long number = longValue;
-        long rezultOfDivBy16, restOfDivBy16;
-        do {
-            if (checkValueLess16(number, strInHexSys)) break;
-
-            rezultOfDivBy16 = number / 16;
-            restOfDivBy16 = number % 16;
-            checkValueLess16(restOfDivBy16, strInHexSys);
-
-            if (rezultOfDivBy16 >= 16) {
-                restOfDivBy16 = rezultOfDivBy16 % 16;
-                checkValueLess16(restOfDivBy16, strInHexSys);
-                rezultOfDivBy16 = rezultOfDivBy16 / 16;
-                number = rezultOfDivBy16;
-            }
-            if (rezultOfDivBy16 < 16) checkValueLess16(rezultOfDivBy16, strInHexSys);
-        }
-
-        while (rezultOfDivBy16 >= 16);
-        System.out.println(strInHexSys.append("x0").reverse());
-    }
-
-    private boolean checkValueLess16(long number, StringBuilder strInHexSys) {
+    private boolean checkValueLess16(long number, StringBuilder strNumInDifSys) {
         if (number < 16) {
             switch ((int) number) {
                 case (10):
-                    strInHexSys.append("A");
+                    strNumInDifSys.append("A");
                     break;
                 case (11):
-                    strInHexSys.append("B");
+                    strNumInDifSys.append("B");
                     break;
                 case (12):
-                    strInHexSys.append("C");
+                    strNumInDifSys.append("C");
                     break;
                 case (13):
-                    strInHexSys.append("D");
+                    strNumInDifSys.append("D");
                     break;
                 case (14):
-                    strInHexSys.append("E");
+                    strNumInDifSys.append("E");
                     break;
                 case (15):
-                    strInHexSys.append("F");
+                    strNumInDifSys.append("F");
                     break;
                 default:
-                    strInHexSys.append(number);
+                    strNumInDifSys.append(number);
                     break;
             }
             return true;
