@@ -5,12 +5,10 @@ public class MVCConverter {
         Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);
-
         controller.convertIntValue();
 
     }
 }
-
 //OUTPUT:
 //        Enter any positive integer in the range of 1 to 9223372036854775807: 0
 //        Integer is out of range (1 .. 9223372036854775807). Enter any positive integer in the range of 1 to 9223372036854775807: ()
