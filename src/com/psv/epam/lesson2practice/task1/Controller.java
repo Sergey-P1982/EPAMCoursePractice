@@ -11,9 +11,9 @@ public class Controller {
 
     public void convertIntValue() {
         while (!model.checkLongInRange(InputScan.inputIntWithScanner(view)))
-            view.printMessage(view.OUT_OF_RANGE);
+            view.printMessage(View.OUT_OF_RANGE);
 
-        view.printResult(view.OUT_VALUE_DIF_SYS, model.getLongValue(), model.convertToBinOctHex());
+        view.printResult(View.OUT_VALUE_DIF_SYS, model.getLongValue(), model.convertToBinOctHex());
 
     }
 }

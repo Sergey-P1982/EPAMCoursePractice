@@ -12,5 +12,6 @@ public class InputScan {
             scan.next();
         }
         return scan.nextLong();
+
     }
 }
