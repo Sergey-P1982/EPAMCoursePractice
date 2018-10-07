@@ -20,7 +20,7 @@ public class Model {
         return numberInRange;
     }
 
-    public void printPyramide() {
+    public void printPyramid() {
         int row, space;
 
         for (row = 1; row <= heightPyram; row++) {

@@ -14,6 +14,6 @@ public class Controller {
             view.printMessage(view.OUT_OF_RANGE);
 
         view.printResult(view.OUTPUT, model.getHeightPyram());
-        model.printPyramide();
+        model.printPyramid();
     }
 }
