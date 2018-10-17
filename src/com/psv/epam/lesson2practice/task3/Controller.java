@@ -13,7 +13,7 @@ public class Controller {
         while (!model.checkHeightInRange(InputScan.inputIntWithScanner(view)))
             view.printMessage(view.OUT_OF_RANGE);
 
-        view.printResult(view.OUTPUT, model.getHeightPyram());
-        model.printPyramid();
+        view.printResult(view.OUTPUT, model.getHeightPyram(), model.getPyramid());
+
     }
 }

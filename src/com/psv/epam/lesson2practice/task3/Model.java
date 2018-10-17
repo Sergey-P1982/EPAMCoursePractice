@@ -20,21 +20,22 @@ public class Model {
         return numberInRange;
     }
 
-    public void printPyramid() {
+    public StringBuilder getPyramid() {
         int row, space;
-
+        StringBuilder strNum = new StringBuilder();
         for (row = 1; row <= heightPyram; row++) {
             for (space = row; space < heightPyram; space++) {
-                System.out.print(" ");
+                strNum.append(" ");
             }
             for (int i = 0; i < row; i++) {
-                System.out.print(i + 1);
+                strNum.append(i + 1);
             }
             for (int i = row - 1; i >= 1; i--) {
-                System.out.print(i);
+                strNum.append(i);
             }
-            System.out.println();
+            strNum.append("\n");
         }
+        return strNum;
 
     }
 

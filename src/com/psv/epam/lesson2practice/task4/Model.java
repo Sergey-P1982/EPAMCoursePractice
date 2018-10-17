@@ -40,7 +40,6 @@ public class Model {
         int[][] rotatedMatrix;
         int[][][] bothMatrices;
 
-
         rotatedMatrix = new int[matrix.length][matrix.length];
 
         int rotateNumber;
@@ -50,7 +49,6 @@ public class Model {
             for (int j = 0; j < matrix[i].length; j++) {
                 rotateNumber = matrix[rowNumber][colomnNumber];
                 rotatedMatrix[i][j] = rotateNumber;
-
                 rowNumber++;
             }
             colomnNumber--;

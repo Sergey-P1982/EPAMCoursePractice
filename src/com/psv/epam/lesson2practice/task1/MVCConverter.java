@@ -1,5 +1,7 @@
 package com.psv.epam.lesson2practice.task1;
 
+import java.util.Hashtable;
+
 public class MVCConverter {
     public static void main(String[] args) {
         Model model = new Model();

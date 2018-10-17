@@ -21,9 +21,13 @@ public class Model {
     }
 
     public StringBuilder findPerfectNumbers() {
-
-        int sum = 0, count = 0;
         StringBuilder strNum = new StringBuilder(intValue + " are: ");
+        checkPerfectNumber(strNum);
+        return strNum;
+    }
+
+    private void checkPerfectNumber(StringBuilder strNum) {
+        int sum = 0, count = 0;
         for (int i = 1; i <= intValue; i++) {
             for (int j = 1; j <= i / 2; j++) {
                 if (i % j == 0) sum += j;
@@ -35,7 +39,6 @@ public class Model {
             sum = 0;
         }
         if (count == 0) strNum.append("0 numbers");
-        return strNum;
     }
 
 }

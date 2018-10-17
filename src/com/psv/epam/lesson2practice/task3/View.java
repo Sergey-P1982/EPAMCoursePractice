@@ -10,8 +10,9 @@ public class View {
     public void printMessage(String s) {
         System.out.print(s);
     }
-    public void printResult(String s, int height) {
-        System.out.println(s + height + " looks like this: ");
+
+    public void printResult(String s, int height, StringBuilder piramydInString) {
+        System.out.println(s + height + " looks like this: " + "\n" + piramydInString);
     }
 
 }
